@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -79,11 +79,15 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="皓月千">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta name="description" content="基于hexo搭建github博客网站，并托管生成网页的源代码">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo教程">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;hexo%E6%95%99%E7%A8%8B&#x2F;index.html">
 <meta property="og:site_name" content="皓月千">
+<meta property="og:description" content="基于hexo搭建github博客网站，并托管生成网页的源代码">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-11T15:59:24.604Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -114,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/11/hexo教程/"/>
 
 
 
 
 
-  <title>皓月千</title>
+  <title>Hexo教程 | 皓月千</title>
   
 
 
@@ -139,8 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -233,9 +236,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -265,9 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/11/hexo%E6%95%99%E7%A8%8B/" itemprop="url">Hexo教程</a></h1>
+          <h1 class="post-title" itemprop="name headline">Hexo教程</h1>
         
 
         <div class="post-meta">
@@ -370,16 +371,23 @@
       
 
       
-        
-          <p>基于hexo搭建github博客网站，并托管生成网页的源代码</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/11/hexo%E6%95%99%E7%A8%8B/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>基于hexo搭建github博客网站，并托管生成网页的源代码</p>
+<a id="more"></a>
+
+<h2 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a>准备知识</h2><ul>
+<li>git</li>
+<li>hexo</li>
+</ul>
+<h2 id="初始化博客仓库"><a href="#初始化博客仓库" class="headerlink" title="初始化博客仓库"></a>初始化博客仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 国内镜像安装</span></span><br><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org/</span><br><span class="line">npm install -g hexo</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">mkdir blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完成后初始化后会在blog文件夹产生hexo相关内容，这些内容是用于生成静态网页的源码，我们使用时只需要做相关配置即可</p>
+<h2 id="github托管"><a href="#github托管" class="headerlink" title="github托管"></a>github托管</h2><p>1.首先，我们需要在github创建 <em>username.github.io</em> 的仓库，这个仓库是个空项目<br>2.hexo发布的静态网页默认在master分支<br>3.可以将生成静态网页的hexo配置代码，托管在 <em>username.github.io</em> 仓库的另一个分支，例如source分支，这样就可以保证不丢失辛苦的配置了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关联远程仓库</span></span><br><span class="line">git remote add origin https://github.com/username/username.github.io.git</span><br><span class="line">git checkout -b <span class="built_in">source</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传内容，我们会发现，hexo生成的blog文件夹自带了.gitingore</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"init"</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="hexo配置简介"><a href="#hexo配置简介" class="headerlink" title="hexo配置简介"></a>hexo配置简介</h2><h2 id="hexo命令简介"><a href="#hexo命令简介" class="headerlink" title="hexo命令简介"></a>hexo命令简介</h2><h2 id="next主题配置简介"><a href="#next主题配置简介" class="headerlink" title="next主题配置简介"></a>next主题配置简介</h2><h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate <span class="comment"># hexo g</span></span><br><span class="line">hexo deploy <span class="comment"># hexo d</span></span><br></pre></td></tr></table></figure>
+
+
+
       
     </div>
     
@@ -394,14 +402,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -411,10 +425,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -422,6 +437,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -442,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -507,6 +535,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备知识"><span class="nav-number">1.</span> <span class="nav-text">准备知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化博客仓库"><span class="nav-number">2.</span> <span class="nav-text">初始化博客仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github托管"><span class="nav-number">3.</span> <span class="nav-text">github托管</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo配置简介"><span class="nav-number">4.</span> <span class="nav-text">hexo配置简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo命令简介"><span class="nav-number">5.</span> <span class="nav-text">hexo命令简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next主题配置简介"><span class="nav-number">6.</span> <span class="nav-text">next主题配置简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">7.</span> <span class="nav-text">发布</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -650,6 +694,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
