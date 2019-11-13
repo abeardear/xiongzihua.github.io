@@ -233,7 +233,21 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
-            </span><br>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/13/hexo%E6%95%99%E7%A8%8B/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/13/hexo%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -260,7 +274,6 @@
       
         <p>基于hexo搭建github博客网站，并托管保存<strong>用于生成网页的hexo配置和源代码</strong></p>
 <a id="more"></a>
-
 <h2 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a>准备知识</h2><ul>
 <li>git</li>
 <li>hexo</li>
@@ -271,8 +284,8 @@
 <p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo文档</a></p>
 <p><a href="https://theme-next.org/docs/" target="_blank" rel="noopener">next主题文档</a></p>
 <h2 id="初始化博客仓库"><a href="#初始化博客仓库" class="headerlink" title="初始化博客仓库"></a>初始化博客仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 国内镜像安装</span></span><br><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org/</span><br><span class="line">npm install -g hexo</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">mkdir blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
 <p>完成后初始化后会在blog文件夹产生hexo相关内容，这些内容是用于生成静态网页的源码，我们使用时只需要做相关配置即可</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -280,7 +293,8 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>_config.yml</td>
 <td>配置文件</td>
 </tr>
@@ -300,10 +314,11 @@
 <td>themes</td>
 <td>博客的模板</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="github托管"><a href="#github托管" class="headerlink" title="github托管"></a>github托管</h2><p>1.首先，我们需要在github创建 <em>username.github.io</em> 的仓库，这个仓库是个空项目<br>2.hexo发布的静态网页默认在master分支<br>3.可以将生成静态网页的hexo配置代码，托管在 <em>username.github.io</em> 仓库的另一个分支，例如source分支，这样就可以保证不丢失辛苦的配置了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关联远程仓库</span></span><br><span class="line">git remote add origin https://github.com/username/username.github.io.git</span><br><span class="line">git checkout -b <span class="built_in">source</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传内容，我们会发现，hexo生成的blog文件夹自带了.gitingore</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"init"</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="hexo配置简介"><a href="#hexo配置简介" class="headerlink" title="hexo配置简介"></a>hexo配置简介</h2><p>hexo的_config.yml</p>
 <ul>
 <li>title: 博客标题</li>
@@ -316,8 +331,6 @@
 <h2 id="next主题配置简介"><a href="#next主题配置简介" class="headerlink" title="next主题配置简介"></a>next主题配置简介</h2><p>还有什么比<a href="https://theme-next.org/docs/" target="_blank" rel="noopener">官方文档</a>更强的呢</p>
 <p><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next 仓库</a></p>
 <h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate <span class="comment"># hexo g</span></span><br><span class="line">hexo deploy <span class="comment"># hexo d</span></span><br></pre></td></tr></table></figure>
-
-
 
     </div>
 
@@ -344,6 +357,7 @@
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
         </div>
           
@@ -497,6 +511,35 @@
   
 
   
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: '1JS1ACnTVAAlN4JXyqpUFe12-gzGzoHsz',
+    appKey: 'DSKS5wqYb4qb4PFVIfn7HOuB',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>
